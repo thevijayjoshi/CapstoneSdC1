@@ -1,0 +1,27 @@
+<app-sortcomponent></app-sortcomponent>
+<div>
+  <h3 class="display-4 mb-5 font-weight-bold ml-5">{{title}}</h3>
+  <div class="search-div mt-0">
+    <input class="search-input" placeholder="Search Products"  type = "text" name="search" [(ngModel)]="searchTerm" style="width:50%; height:30px">
+  </div>
+  <div class="row container">
+  <div class="column box" *ngFor="let productInfo of page?.content | filter:searchTerm " >
+      <div class="product-image"><img src="{{productInfo.productIcon}}" height="320px"/></div>
+      <br>
+      <div class="d-flex flex-row mb-1" style="font-size:14px;">{{productInfo.productName}}</div>
+    <br/>
+        <div class="d-flex flex-row mb-1">
+          <p class="col-md-6 col-lg-6 col-xl-6" style="font-size: 10px;">Rs. {{productInfo.productPrice}}</p>
+        </div>
+        <p class="text-success" style="font-size: 14px;">Free shipping</p>
+        <div class="d-flex mt-4">
+          <button routerLink="/product/{{productInfo.productId}}" *ngIf="productInfo.productStatus == 0; else offBlock" class="btn btn-outline-warning btn-lg mt-2" type="button">
+            Add to cart
+          </button>
+          <ng-template #offBlock><a class="btn btn-secondary btn-lg disabled">Unavailable</a></ng-template>
+        </div>
+      
+      <hr>
+  </div>
+  </div>
+  <app-pagination  [currentPage]="page" ></app-pagination>

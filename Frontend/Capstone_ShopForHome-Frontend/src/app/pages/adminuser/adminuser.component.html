@@ -1,0 +1,49 @@
+<h3 class="display-4 mb-5 ml-3 text-align-left font-weight-bold">Users</h3>
+
+<section class="h-100 h-custom">
+    <div class="h-100 container py-5">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col">
+
+          <div class="table-responsive">
+            <table class="table">
+              <thead>
+                <tr>
+                    <th scope="col">Email</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Role</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let user of page?.content | filter:searchText">
+                  <th scope="row">
+                    <div class="d-flex align-items-center">
+                      <div class="flex-column ms-4">
+                        <a>
+                            <p class="mb-0 ml-2" style="font-size: 14px;">{{user.email}}</p>
+                        </a>
+                      </div>
+                    </div>
+                  </th>
+                  <td class="align-middle">
+                    <p class="mb-0" style="font-weight: 100; font-size: 14px"> {{user.name}}</p>
+                  </td>
+                  <td class="align-middle">
+                    <p class="mb-0" style="font-weight: 100; font-size: 14px;">{{user.role}}</p>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="addUserbtn">
+    <button routerLink="/addUser" class="btn btn-info btn-lg">add User</button>
+  </div>
+  </section>
+
+ 
+
+
+<app-pagination [currentPage]="page"></app-pagination>
